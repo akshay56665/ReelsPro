@@ -31,7 +31,7 @@ export async function dbConnect() {
     cached.conn = await cached.promise;
   } catch (error) {
     cached.promise = null;
-    throw new Error("MongoDB connection failed");
+    throw new Error(`MongoDB connection failed error: ${error}`);
   }
   return cached.conn;
 }

@@ -3,7 +3,6 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Link from "next/link";
-import { log } from "util";
 
 export default function Register() {
   const [email, setEmail] = useState("");
@@ -30,7 +29,6 @@ export default function Register() {
       setError(result.error);
       return;
     } else {
-      // showNotifications(`Welcome ${result.}`);
       router.push("/");
     }
   };

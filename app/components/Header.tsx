@@ -2,7 +2,7 @@ import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { NextResponse } from "next/server";
 import React from "react";
-import { Home, User } from "lucide-react";
+import { User } from "lucide-react";
 import { useNotifications } from "./Notifications";
 
 function Header() {
@@ -12,6 +12,7 @@ function Header() {
     try {
       await signOut();
     } catch (error) {
+      console.error(error);
       return NextResponse.json(showNotification("Failed to sign Out", "error"));
     }
   };

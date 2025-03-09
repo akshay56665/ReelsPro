@@ -39,8 +39,12 @@ export const authOptions: NextAuthOptions = {
           }
 
           return { id: user._id.toString(), name: user.name };
-        } catch (error: any) {
-          throw new Error(error.message);
+        } catch (error) {
+          if (error instanceof Error) {
+            throw new Error(error.message);
+          } else {
+            throw new Error("An unknown error occurred");
+          }
         }
       },
     }),

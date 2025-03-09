@@ -48,14 +48,13 @@ function VideoUploadForm() {
       setValue("thumbnailUrl", "");
       setUploadProgress(0);
     } catch (error) {
+      console.error(error);
       showNotification("Failed to upload video", "error");
     }
     setLoading(false);
   };
 
   const handleUploadSuccess = (response: IKUploadResponse) => {
-    console.log(response);
-
     setValue("VideoUrl", response.filePath);
     setValue("thumbnailUrl", response.thumbnailUrl || response.filePath);
     showNotification("Video uploaded successfully!", "success");
