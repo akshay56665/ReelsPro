@@ -1,12 +1,17 @@
-import globals from "globals";
-import pluginJs from "@eslint/js";
-import tseslint from "typescript-eslint";
+import { FlatCompat } from "@eslint/eslintrc";
 
+const compat = new FlatCompat({
+  baseDirectory: import.meta.dirname,
+});
 
-/** @type {import('eslint').Linter.Config[]} */
-export default [
-  {files: ["**/*.{js,mjs,cjs,ts}"]},
-  {languageOptions: { globals: globals.browser }},
-  pluginJs.configs.recommended,
-  ...tseslint.configs.recommended,
+const eslintConfig = [
+  ...compat.config({
+    extends: "next/core-web-vitals",
+    rules: {
+      "@typescript-eslint/no-explicit-any": "off",
+      "@typescript-eslint/explicit-module-boundary-types": "off",
+    },
+  }),
 ];
+
+export default eslintConfig;
